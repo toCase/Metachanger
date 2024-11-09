@@ -72,7 +72,7 @@ class MetaChange(QThread):
             f'-filename={nfile}',   
             ofile
         ]    
-        subprocess.run(command, capture_output=True, text=True)
+        subprocess.run(command, capture_output=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW)
         
     def setMetadataExifToolPNG(self, ofile, nfile, title, description, keywords):
         command = [
@@ -83,7 +83,7 @@ class MetaChange(QThread):
             f'-filename={nfile}',   
             ofile
         ]
-        subprocess.run(command, capture_output=True, text=True)
+        subprocess.run(command, capture_output=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW)
         
     def changeMetadataEPS(self, old_file:str,  new_file:str, title:str, desc:str, keywords:list):
     
