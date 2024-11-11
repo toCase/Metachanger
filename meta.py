@@ -139,7 +139,7 @@ class MetaChange(QThread):
         sett = QSettings(self.S_NAME, QSettings.Format.IniFormat)                
         list_name = sett.value("list/lname")
         start_row = int(sett.value("row/first"))
-        end_row = 5 # sheets.max_row
+        end_row = sheets.max_row
         
         col_old_file = int(sett.value("col/old_file"))
         col_new_file = int(sett.value("col/new_file"))
