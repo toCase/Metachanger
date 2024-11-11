@@ -72,7 +72,7 @@ class MetaChange(QThread):
             f'-filename={nfile}',   
             ofile
         ]    
-        subprocess.run(command, capture_output=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW)
+        subprocess.run(command, capture_output=True, text=True)
         
     def setMetadataExifToolPNG(self, ofile, nfile, title, description, keywords):
         command = [
@@ -83,7 +83,7 @@ class MetaChange(QThread):
             f'-filename={nfile}',   
             ofile
         ]
-        subprocess.run(command, capture_output=True, text=True, creationflags=subprocess.CREATE_NO_WINDOW)
+        subprocess.run(command, capture_output=True, text=True)
         
     def changeMetadataEPS(self, old_file:str,  new_file:str, title:str, desc:str, keywords:list):
     
@@ -139,7 +139,7 @@ class MetaChange(QThread):
         sett = QSettings(self.S_NAME, QSettings.Format.IniFormat)                
         list_name = sett.value("list/lname")
         start_row = int(sett.value("row/first"))
-        end_row = sheets.max_row
+        
         
         col_old_file = int(sett.value("col/old_file"))
         col_new_file = int(sett.value("col/new_file"))
@@ -156,6 +156,7 @@ class MetaChange(QThread):
             return
         idx = sheets.index(list_name)            
         sh = wb[sheets[idx]]
+        end_row = sh.max_row
         
         r:int = 0
         for row in sh.iter_rows(min_row=start_row, max_row=end_row, values_only=True):            
